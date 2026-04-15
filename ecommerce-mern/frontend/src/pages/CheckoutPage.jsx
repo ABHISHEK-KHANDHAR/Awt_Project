@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Col, Row, Card, ListGroup, Image } from 'react-bootstrap';
-import axios from 'axios';
+import axios from '../utils/api';
 import Message from '../components/Message';
 
 const CheckoutPage = () => {
@@ -70,7 +70,7 @@ const CheckoutPage = () => {
         totalPrice
       };
 
-      await axios.post('http://localhost:5000/api/orders', orderData, config);
+      await axios.post('/api/orders', orderData, config);
       
       setSuccess(true);
       

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap';
-import axios from 'axios';
+import axios from '../utils/api';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
@@ -16,7 +16,7 @@ const ProductPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const { data } = await axios.get(`/api/products/${id}`);
         setProduct(data);
         setLoading(false);
       } catch (err) {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, useLocation, useNavigate } from 'react-router-dom';
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap';
-import axios from 'axios';
+import axios from '../utils/api';
 
 const CartPage = () => {
   const { id } = useParams();
@@ -18,7 +18,7 @@ const CartPage = () => {
       let currentCart = JSON.parse(localStorage.getItem('cartItems')) || [];
       if (id) {
         try {
-          const { data } = await axios.get(`http://localhost:5000/api/products/${id}`);
+          const { data } = await axios.get(`/api/products/${id}`);
           const itemToAdd = {
             product: data._id,
             name: data.name,

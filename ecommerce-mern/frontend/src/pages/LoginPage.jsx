@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Form, Button, Row, Col, Card } from 'react-bootstrap';
-import axios from 'axios';
+import axios from '../utils/api';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 
@@ -28,7 +28,7 @@ const LoginPage = ({ setUserInfo }) => {
     try {
       setLoading(true);
       const config = { headers: { 'Content-Type': 'application/json' } };
-      const { data } = await axios.post('http://localhost:5000/api/users/login', { email, password }, config);
+      const { data } = await axios.post('/api/users/login', { email, password }, config);
       sessionStorage.setItem('userInfo', JSON.stringify(data));
       setUserInfo(data);
       setLoading(false);

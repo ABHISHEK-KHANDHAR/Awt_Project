@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Table, Button, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
+import axios from '../utils/api';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 
@@ -24,7 +24,7 @@ const AdminDashboard = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/products');
+      const { data } = await axios.get('/api/products');
       setProducts(data);
       setLoading(false);
     } catch (err) {
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
             Authorization: `Bearer ${userInfo.token}`
           }
         };
-        await axios.delete(`http://localhost:5000/api/products/${id}`, config);
+        await axios.delete(`/api/products/${id}`, config);
         fetchProducts();
       } catch (err) {
         alert(err.response && err.response.data.message ? err.response.data.message : err.message);
@@ -58,7 +58,7 @@ const AdminDashboard = () => {
           Authorization: `Bearer ${userInfo.token}`
         }
       };
-      await axios.post(`http://localhost:5000/api/products`, {}, config);
+      await axios.post(`/api/products`, {}, config);
       fetchProducts();
     } catch (err) {
       alert(err.response && err.response.data.message ? err.response.data.message : err.message);

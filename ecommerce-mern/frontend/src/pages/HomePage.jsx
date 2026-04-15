@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
-import axios from 'axios';
+import axios from '../utils/api';
 import Product from '../components/Product';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -15,7 +15,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/products');
+        const { data } = await axios.get('/api/products');
         setProducts(data);
         setLoading(false);
       } catch (err) {
